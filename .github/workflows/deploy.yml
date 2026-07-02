@@ -17,14 +17,14 @@ jobs:
         run: npm install
       - name: build
         env:
-          BASE_PATH: '/EAP_dashboard'
+          BASE_PATH: '/${{ github.event.repository.name }}'
         run: |
           npm run sources
           npm run build
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'build/EAP_dashboard'
+          path: 'build/${{ github.event.repository.name }}'
   deploy:
     needs: build
     runs-on: ubuntu-latest
